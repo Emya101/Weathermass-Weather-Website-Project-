@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherMass</title>
+    <link rel="stylesheet" href="Styling.css">
+</head>
+<body>
+    <h1>WeatherMass</h1>
+
+    <!-- Menu Icon -->
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    
+    <div class="dropdown-section" id="dropdown-section">
+        <!-- Change Metrics Section -->
+        <div class="dropdown">
+            <button class="dropdown-toggle" data-target="metrics-options">
+                Change Metrics ▼
+            </button>
+            <ul class="dropdown-menu" id="metrics-options">
+                <li data-metric="Temperature">Temperature (°C/°F)
+                    <ul class="nested-menu">
+                        <li data-child="Celsius" data-symbol="°C">Celsius(°C)</li>
+                        <li data-child="Fahrenheit" data-symbol="°F">Fahrenheit (°F)</li>
+                        <li data-child="Kelvin" data-symbol="K">Kelvin (K)</li>
+                    </ul>
+                </li>
+                <li data-metric="WindSpeed">Wind Speed (km/h, mph)
+                    <ul class="nested-menu">
+                        <li data-child="Kilometers per Hour" data-symbol="Km/h">Kilometer/hr(Km/h)</li>
+                        <li data-child="Miles per Hour" data-symbol="M/h">Miles/hr(M/h)</li>
+                    </ul>
+                </li>
+                <li data-metric="Precipitation">Precipitation (mm, inches)
+                    <ul class="nested-menu">
+                        <li data-child="Millimeters" data-symbol="mm">Millimeters(mm)</li>
+                        <li data-child="Inches" data-symbol="in">Inches(in)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- View Weather Section -->
+        <div class="dropdown">
+            <button class="dropdown-toggle" data-target="weather-options">
+                View Weather ▼
+            </button>
+            <ul class="dropdown-menu" id="weather-options">
+                <li onclick="updateWeatherDropdown('current')">Current Weather</li>
+                <li onclick="updateWeatherDropdown('hourly')">Hourly Forecast</li>
+                <li onclick="updateWeatherDropdown('weekly')">Weekly Forecast</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Search Form -->
+    <div class="weather-info-container">
+    <div class="weather-details">
+        <select id="locationType">
+            <option value="city">City & Country</option>
+            <option value="coordinates">Longitude & Latitude</option>
+        </select>
+        <button onclick="getLocation()">Get Location</button>
+        
+        <h2 id="location">Your estimated Location:______________<br></h2>
+        <form id="search-form">
+            <input type="text" id="city-input" name="location" placeholder="Enter city name" required>
+            <input type="submit" value="Search">
+        </form>
+        
+        <p id="temperature-display">Temperature:_______(°C)</p>
+        <p id="wind-speed-display">Wind-Speed:_______(Km/h)</p>
+        <p id="precipitation-display">Precipitation:_______(mm)</p>
+    </div>
+
+    <div class="symbol-container">
+        <img src="pictures/sun.jpg">
+    </div>
+
+    </div>
+
+<div class="Background-display">
+    <div class="top-section">
+        <p><b>Weather Forecast: </b></p>
+        <select id="weather-conditions" onchange="showWeatherSection()">
+            <option value="current">Current Weather</option>
+            <option value="hourly">Hourly Weather</option>
+            <option value="weekly">Weekly Weather</option>
+        </select>
+    </div>
+
+    <div id="current-weather" class="weather-section">
+        <p id="current-day">Current day:__________</p>
+        <p id="current-time">Current time:___________</p>
+    <div class="Icon-display">
+        <img src="pictures/sun.jpg">
+        <div class="temp-info">
+        <p id="highest-temp">High:_______</p>
+        <p id="lowest-temp">Low:________</p> 
+        </div>
+        <img src="pictures/wind.jpg">
+        <div class="wind-info">
+            <p id="highest-wind">High:_______</p>
+            <p id="lowest-wind">Low:________</p>
+            </div>
+        <img src="pictures/drop.jpg">
+        <div class="precipitation-info">
+            <p>High:_______</p>
+            <p>Low:________</p>
+        </div>
+    </div>
+    </div>
+
+    <div id="hourly-weather" class="weather-section">
+        <div id="hourly-forecast-container"></div> <!-- JavaScript will populate this -->
+    </div>    
+    
+    <div id="weekly-weather" class="weather-section">
+        <div id="Weekly-Icons">
+            
+        </div>
+    </div>
+
+    
+
+</div>
+
+<div id="Lifestyles">
+
+<div id="lifestyle-choices" class="Winter-food">
+    <h3>Lifestyle-choices: Food</h3>
+    <div id="Food-display">
+    <img src="pictures/Hot-chocolate.jpg">
+    <img src="pictures/Soup.jpg">
+    <img src="pictures/Tea.jpg">
+    <img src="pictures/Cookies.jpg">
+</div>
+</div>
+
+<div id="lifestyle-choices" class="Winter-Clothes">
+    <h3>Lifestyle-choices: Clothes</h3>
+    <div id="Food-display">
+    <img src="pictures/Scarf.jpg">
+    <img src="pictures/Beanie.jpg">
+    <img src="pictures/Jacket.jpg">
+    <img src="pictures/Mittens.jpg">
+    <img src="pictures/Winter Boots.jpg">
+</div>
+</div>
+
+</div>
+    <script src="fetch/MainFormFetch.js"></script>
+</body>
